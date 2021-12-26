@@ -1,5 +1,3 @@
-// gives the wrong answer
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -16,19 +14,20 @@ void newfish(int today, int counter)
 	for(int i=today;i<FINALDAY;i++)
 	{
 		counter--;
-		if(counter==0)
+		if(counter==-1)
 		{
-			counter=7;
-			newfish(i, 8);
+			counter=6;
+			newfish(i+1, 8);
 		}
 	}
 	return;
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
+	FILE*fp=fopen(argv[1],"r");
 	char line[LEN];
-	fgets(line,LEN,stdin);
-	
+	fgets(line,LEN,fp);
+
 	char *token;
 	token=strtok(line,",");
 	while(token!=NULL)
