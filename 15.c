@@ -3,12 +3,12 @@
 #include <stdlib.h>
 
 #define LINESIZE 128
-#define SQUARESIZE 10
+#define SQUARESIZE 100
 
-void move(int x, int y, int pile);
+void move(int x, int y, int pile, int fromx, int fromy);
 
 int m[SQUARESIZE][SQUARESIZE];
-int bestscore=0;
+unsigned int bestscore=0-1;
 
 void main()
 {
@@ -21,24 +21,19 @@ void main()
             m[k][i]=line[i]-'0';
         k++;
     }
+   
     
-    for(int i=0;i<SQUARESIZE;i++)
-    {
-        for(int j=0;j<SQUARESIZE;j++)
-            printf("%d",m[i][j]);
-        printf("\n");
-    }
-    
-    move(0,0,0);
+    move(0,0,0,-1,-1);
     
     return;
 }
 
 
 
-void move(int x, int y, int pile)
+void move(int x, int y, int pile, int fromx, int fromy)
 {   
-    pile += m[x][y];
+    if(!(x==0&&y==0))
+    	pile += m[x][y];
     if(x==SQUARESIZE-1 && y==SQUARESIZE-1)
     {
         if(pile<bestscore)
@@ -46,16 +41,21 @@ void move(int x, int y, int pile)
             printf("new best score: %d\n",pile);
             bestscore=pile;
         }
+        return;
     }
-    
-    if(x>0)
-        move(x-1, y, pile);
-    if(x<SQUARESIZE-2)
-        move(x+1, y, pile);
-    if(y>0)
-        move(x, y-1, pile);
-    if(y<SQUARESIZE-2)
-        move(x, y+1, pile);
+
+ /*   
+    if(x>0 && fromx!=x-1)
+        move(x-1, y, pile, x, y);
+   */     
+    if(x<SQUARESIZE-1 && fromx!=x+1)
+        move(x+1, y, pile, x, y);
+     /*   
+    if(y>0 && fromy!=y-1)
+        move(x, y-1, pile, x, y);
+       */ 
+    if(y<SQUARESIZE-1 && fromy!=y+1)
+        move(x, y+1, pile, x, y);
     
     return;
     
