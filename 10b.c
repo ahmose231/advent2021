@@ -6,6 +6,7 @@
 #define LEN 128
 
 int zing(int c);
+int bling(int c);
 
 void main()
 {
@@ -14,8 +15,8 @@ void main()
 	char stack[LEN];
 	int si;
 	int flag;
-	int total=0;
-	int bigtotal[100];
+	unsigned long long int total=0;
+	unsigned long long int bigtotal[100];
 	int bigtotalindex=0;
 	while(fgets(line,LEN,stdin)!=NULL)
 	{
@@ -66,9 +67,28 @@ void main()
 		bigtotal[bigtotalindex++]=total;
 	}
 					
-	
+	unsigned long long int temp;
+	for(int i=0;i<bigtotalindex-1;i++)
+	{
+		for(int j=i+1;j<bigtotalindex;j++)
+		{
+			if(bigtotal[i]>bigtotal[j])
+			{
+				temp=bigtotal[i];
+				bigtotal[i]=bigtotal[j];
+				bigtotal[j]=temp;
+			}
+		}
+	}
+			
+	int count=0;	
 	for(int i=0;i<bigtotalindex;i++)
-	    printf("%d\n",bigtotal[i]);
+		if(bigtotal[i]>0)
+			count++;
+	
+	printf("%llu\n",bigtotal[bigtotalindex-count+(count/2)]);
+	
+	
 	return;
 }
 
@@ -97,6 +117,5 @@ int bling(int c)
 		case '<': return 4;
 	}
 	
-	return;
+	return 0;
 }
-
