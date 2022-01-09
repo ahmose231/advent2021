@@ -44,16 +44,15 @@ void move(int x, int y, int pile, int fromx, int fromy)
         return;
     }
 
- /*   
-    if(x>0 && fromx!=x-1)
-        move(x-1, y, pile, x, y);
-   */     
+ /* if(x>0 && fromx!=x-1)
+        move(x-1, y, pile, x, y);    */     
+    
     if(x<SQUARESIZE-1 && fromx!=x+1)
         move(x+1, y, pile, x, y);
-     /*   
-    if(y>0 && fromy!=y-1)
-        move(x, y-1, pile, x, y);
-       */ 
+   
+ /* if(y>0 && fromy!=y-1)
+        move(x, y-1, pile, x, y);     */ 
+    
     if(y<SQUARESIZE-1 && fromy!=y+1)
         move(x, y+1, pile, x, y);
     
