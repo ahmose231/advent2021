@@ -29,34 +29,22 @@ void main()
 				if(line[i]==')')
 				{
 					if(stack[si-1]=='(')
-					{
-
 						si--;
-					}
 					else
-					{
-
 						flag=1;
-					}
 				}
-				else {
+				else 
+				{
 					if(stack[si-1]==line[i]-2)
-					{
-
 						si--;
-					}
 					else
-					{
-
 						flag=1;
-					}
 				}
 			}
 			
 			if(flag)
 			{
 				total += zing(line[i]);	
-
 				break;
 			}
 		}
