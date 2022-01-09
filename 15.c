@@ -26,8 +26,10 @@ void main() {
 }
 
 void move(int x, int y, int pile, int fromx, int fromy) {
+        
         if (!(x == 0 && y == 0))
                 pile += m[x][y];
+        
         if (x == SQUARESIZE - 1 && y == SQUARESIZE - 1) {
                 if (pile < bestscore) {
                         printf("new best score: %d\n", pile);
