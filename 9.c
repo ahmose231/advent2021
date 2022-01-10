@@ -1,5 +1,3 @@
-//wrong answer
-
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,7 +25,7 @@ void main()
 			if(m[i][j]<m[i+1][j] &&
 				m[i][j]<m[i-1][j] &&
 				m[i][j]<m[i][j+1] &&
-				m[i][j]<m[i+1][j-1])
+				m[i][j]<m[i][j-1])
 					sum=sum+1+m[i][j]-'0';
 
 	for(int i=1;i<SQUARESIZE-1;i++)
@@ -52,7 +50,7 @@ void main()
 		if(m[i][SQUARESIZE-1]<m[i-1][SQUARESIZE-1] &&
 			m[i][SQUARESIZE-1]<m[i+1][SQUARESIZE-1] &&
 			m[i][SQUARESIZE-1]<m[i][SQUARESIZE-2])
-				sum=sum+1+m[0][i]-'0';
+				sum=sum+1+m[i][SQUARESIZE-1]-'0';
 	
 	if(m[0][0]<m[1][0] && m[0][0]<m[0][1])
 		sum=sum+1+m[0][0]-'0';
