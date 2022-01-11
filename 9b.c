@@ -18,6 +18,11 @@ struct node {
 // the grid
 int m[SQUARESIZE][SQUARESIZE];
 
+	
+
+int max1=0,max2,max3;
+
+
 
 
 void find_basin(int x, int y);
@@ -42,14 +47,14 @@ void main()
 		len=strlen(line);
 		if(len<2) continue;
 		for(int i=0;i<SQUARESIZE;i++)
-			m[k][i]=line[i];
+			m[k][i]=line[i]-'0';
 		k++;
 	}
 
   
 	find_low_point();
 		
-  
+    printf("%d\n",max1*max2*max3);
   
 	return;
 }
@@ -205,10 +210,6 @@ void move_in_basin(struct node* root, int x, int y)
 	
 	return;
 }
-	
-
-
-
 
 void find_basin(int x, int y)
 {
@@ -235,10 +236,14 @@ void find_basin(int x, int y)
 	
 	free(root);
 	
-	printf("%d\n",count);
+	
+	if(count>max1)
+    {
+        max3=max2;
+        max2=max1;
+        max1=count;
+    }
 	
 	return;
 	
 }
-
-
