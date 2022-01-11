@@ -4,7 +4,7 @@
 
 
 #define LEN 128
-#define SQUARESIZE 100
+#define GRIDSIZE 100
 
 
 
@@ -16,7 +16,7 @@ struct node {
 
 
 // the grid
-int m[SQUARESIZE][SQUARESIZE];
+int m[GRIDSIZE][GRIDSIZE];
 
 	
 
@@ -46,7 +46,7 @@ void main()
 	{
 		len=strlen(line);
 		if(len<2) continue;
-		for(int i=0;i<SQUARESIZE;i++)
+		for(int i=0;i<GRIDSIZE;i++)
 			m[k][i]=line[i]-'0';
 		k++;
 	}
@@ -54,7 +54,7 @@ void main()
   
 	find_low_point();
 		
-    printf("%d\n",max1*max2*max3);
+    	printf("%d\n",max1*max2*max3);
   
 	return;
 }
@@ -67,8 +67,8 @@ void find_low_point()
   
   // checking the input square for the middle part
   // excluding the outermost 4 edges
-	for(int i=1;i<SQUARESIZE-1;i++)
-		for(int j=1;j<SQUARESIZE-1;j++)
+	for(int i=1;i<GRIDSIZE-1;i++)
+		for(int j=1;j<GRIDSIZE-1;j++)
 			if(m[i][j]<m[i+1][j] &&
 				m[i][j]<m[i-1][j] &&
 				m[i][j]<m[i][j+1] &&
@@ -78,44 +78,44 @@ void find_low_point()
   
   //checking the four edges
   // edge 1
-	for(int i=1;i<SQUARESIZE-1;i++)
+	for(int i=1;i<GRIDSIZE-1;i++)
 		if(m[0][i]<m[0][i-1] &&
 			m[0][i]<m[0][i+1] &&
 			m[0][i]<m[1][i])
 				find_basin(0, i);
   //edge 2
-	for(int i=1;i<SQUARESIZE-1;i++)
-		if(m[SQUARESIZE-1][i]<m[SQUARESIZE-1][i-1] &&
-			m[SQUARESIZE-1][i]<m[SQUARESIZE-1][i+1] &&
-			m[SQUARESIZE-1][i]<m[SQUARESIZE-2][i])
-				find_basin(SQUARESIZE-1, i);
+	for(int i=1;i<GRIDSIZE-1;i++)
+		if(m[GRIDSIZE-1][i]<m[GRIDSIZE-1][i-1] &&
+			m[GRIDSIZE-1][i]<m[GRIDSIZE-1][i+1] &&
+			m[GRIDSIZE-1][i]<m[GRIDSIZE-2][i])
+				find_basin(GRIDSIZE-1, i);
   //edge 3
-	for(int i=1;i<SQUARESIZE-1;i++)
+	for(int i=1;i<GRIDSIZE-1;i++)
 		if(m[i][0]<m[i-1][0] &&
 			m[i][0]<m[i+1][0] &&
 			m[i][0]<m[i][1])
 				find_basin(i, 0);
   //edge 4
-	for(int i=1;i<SQUARESIZE-1;i++)
-		if(m[i][SQUARESIZE-1]<m[i-1][SQUARESIZE-1] &&
-			m[i][SQUARESIZE-1]<m[i+1][SQUARESIZE-1] &&
-			m[i][SQUARESIZE-1]<m[i][SQUARESIZE-2])
-				find_basin(i, SQUARESIZE-1);
+	for(int i=1;i<GRIDSIZE-1;i++)
+		if(m[i][GRIDSIZE-1]<m[i-1][GRIDSIZE-1] &&
+			m[i][GRIDSIZE-1]<m[i+1][GRIDSIZE-1] &&
+			m[i][GRIDSIZE-1]<m[i][GRIDSIZE-2])
+				find_basin(i, GRIDSIZE-1);
 	
   
   //checking for the 4 corners
   //corner 1
 	if(m[0][0]<m[1][0] && m[0][0]<m[0][1])
 		find_basin(0, 0);
-	//corner 2
-	if(m[0][SQUARESIZE-1]<m[0][SQUARESIZE-2] && m[0][SQUARESIZE-1]<m[1][00])
-		find_basin(0, SQUARESIZE-1);
+  //corner 2
+	if(m[0][GRIDSIZE-1]<m[0][GRIDSIZE-2] && m[0][GRIDSIZE-1]<m[1][00])
+		find_basin(0, GRIDSIZE-1);
   //corner3
-	if(m[SQUARESIZE-1][0]<m[SQUARESIZE-2][0] && m[SQUARESIZE-1][0]<m[SQUARESIZE-1][1])
-		find_basin(SQUARESIZE-1, 0);
+	if(m[GRIDSIZE-1][0]<m[GRIDSIZE-2][0] && m[GRIDSIZE-1][0]<m[GRIDSIZE-1][1])
+		find_basin(GRIDSIZE-1, 0);
   //corner 4
-	if(m[SQUARESIZE-1][SQUARESIZE-1]<m[SQUARESIZE-1][SQUARESIZE-2] && m[SQUARESIZE-1][SQUARESIZE-1]<m[SQUARESIZE-2][SQUARESIZE-1])
-		find_basin(SQUARESIZE-1, SQUARESIZE-1);
+	if(m[GRIDSIZE-1][GRIDSIZE-1]<m[GRIDSIZE-1][GRIDSIZE-2] && m[GRIDSIZE-1][GRIDSIZE-1]<m[GRIDSIZE-2][GRIDSIZE-1])
+		find_basin(GRIDSIZE-1, GRIDSIZE-1);
 
 	return;
 }
@@ -172,9 +172,9 @@ int is_added(struct node* root, int x, int y)
 
 int check_available(struct node* root, int x, int y)
 {
-	// edges of square
+	// edges of grid
 	if(x<0 || y<0) return 0;
-	if(x>=SQUARESIZE || y>=SQUARESIZE) return 0;
+	if(x>=GRIDSIZE || y>=GRIDSIZE) return 0;
 	
 	// 9 is the basin edge
 	if(m[x][y]==9) return 0;
