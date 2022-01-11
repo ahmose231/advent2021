@@ -22,7 +22,8 @@ int m[GRIDSIZE][GRIDSIZE];
 
 int max1=0,max2,max3;
 
-
+int countlist[500];
+int countindex=0;
 
 
 void find_basin(int x, int y);
@@ -54,8 +55,19 @@ void main()
   
 	find_low_point();
 		
-    	printf("%d\n",max1*max2*max3);
-  
+	int max1,max2,max3;
+	max1=max2=max3=0;
+    for(int i=0;i<countindex;i++)
+    	if(countlist[i]>max1)
+    		max1=countlist[i];
+    for(int i=0;i<countindex;i++)
+    	if(countlist[i]>max2 && countlist[i]!=max1)
+    		max2=countlist[i];
+    for(int i=0;i<countindex;i++)
+    	if(countlist[i]>max3 && countlist[i]!=max1 && countlist[i]!=max2)
+    		max3=countlist[i];
+
+  	printf("%d * %d * %d = %d\n",max1,max2,max3,max1*max2*max3);
 	return;
 }
 
@@ -108,7 +120,7 @@ void find_low_point()
 	if(m[0][0]<m[1][0] && m[0][0]<m[0][1])
 		find_basin(0, 0);
   //corner 2
-	if(m[0][GRIDSIZE-1]<m[0][GRIDSIZE-2] && m[0][GRIDSIZE-1]<m[1][00])
+	if(m[0][GRIDSIZE-1]<m[0][GRIDSIZE-2] && m[0][GRIDSIZE-1]<m[1][GRIDSIZE-1])
 		find_basin(0, GRIDSIZE-1);
   //corner3
 	if(m[GRIDSIZE-1][0]<m[GRIDSIZE-2][0] && m[GRIDSIZE-1][0]<m[GRIDSIZE-1][1])
@@ -236,14 +248,8 @@ void find_basin(int x, int y)
 	
 	free(root);
 	
-	
-	if(count>max1)
-    {
-        max3=max2;
-        max2=max1;
-        max1=count;
-    }
-	
+	countlist[countindex++]=count;
+		
 	return;
 	
 }
