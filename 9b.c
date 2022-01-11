@@ -15,7 +15,7 @@ struct node {
 };
 
 
-
+// the grid
 int m[SQUARESIZE][SQUARESIZE];
 
 
