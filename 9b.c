@@ -65,7 +65,7 @@ void main()
 void find_low_point()
 {
   
-  // checking the input square for the middle part
+  // checking the input grid for the middle part
   // excluding the outermost 4 edges
 	for(int i=1;i<GRIDSIZE-1;i++)
 		for(int j=1;j<GRIDSIZE-1;j++)
