@@ -57,15 +57,16 @@ void main()
 		
 	int max1,max2,max3;
 	max1=max2=max3=0;
-    for(int i=0;i<countindex;i++)
-    	if(countlist[i]>max1)
-    		max1=countlist[i];
-    for(int i=0;i<countindex;i++)
-    	if(countlist[i]>max2 && countlist[i]!=max1)
-    		max2=countlist[i];
-    for(int i=0;i<countindex;i++)
-    	if(countlist[i]>max3 && countlist[i]!=max1 && countlist[i]!=max2)
-    		max3=countlist[i];
+	
+	for(int i=0;i<countindex;i++)
+		if(countlist[i]>max1)
+			max1=countlist[i];
+	for(int i=0;i<countindex;i++)
+		if(countlist[i]>max2 && countlist[i]!=max1)
+			max2=countlist[i];
+	for(int i=0;i<countindex;i++)
+		if(countlist[i]>max3 && countlist[i]!=max1 && countlist[i]!=max2)
+			max3=countlist[i];
 
   	printf("%d * %d * %d = %d\n",max1,max2,max3,max1*max2*max3);
 	return;
