@@ -19,9 +19,6 @@ struct node {
 int m[GRIDSIZE][GRIDSIZE];
 
 	
-
-int max1=0,max2,max3;
-
 int countlist[500];
 int countindex=0;
 
