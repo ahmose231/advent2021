@@ -1,7 +1,5 @@
 #include <stdio.h>
-
 #include <string.h>
-
 #include <stdlib.h>
 
 #define LEN 256
@@ -147,6 +145,7 @@ void main() {
           break;
       }
 
+    flag = 0;
     for (int i = 0; i < k; i++)
       if (wordlen[i] == 6) {
         for (int m = 0; m < 7; m++)
